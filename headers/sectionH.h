@@ -4,8 +4,7 @@
 
 typedef struct {
     int numberOfSection;
-    time_t firstOpenDate;
-    time_t lastOpenDate;
+    struct tm *lastOpenDate;
 }Section;
 
 struct SectionNo{
@@ -16,6 +15,7 @@ struct SectionNo{
 
 typedef struct {
     struct SectionNo *start;
+    struct tm *openSecDate;
     struct SectionNo *end;
 }SectionList;
 
@@ -23,5 +23,6 @@ int NewSection(SectionList *secList);
 
 int CreateSectionList(SectionList *sectionList);
 int InsertNewSection(SectionList *secList, Section sec);
+int InitNewSection();
 
 #endif //RPGHELPER_SECTIONH_H

@@ -1,11 +1,11 @@
 #include "../headers/sectionH.h"
+#include "stdio.h"
 
 
 
 int NewSection(SectionList *sectionList){
     Section section;
     section.numberOfSection += sectionList->end->section.numberOfSection;
-    section.firstOpenDate = sectionList->start->section.firstOpenDate;
     section.lastOpenDate = time(0);
 
     InsertNewSection(sectionList, section);
@@ -14,6 +14,8 @@ int NewSection(SectionList *sectionList){
 
 int CreateSectionList(SectionList *sectionList){
     sectionList->start = NULL;
+    time_t t = time(NULL);
+    sectionList->openSecDate = localtime(&t);
     sectionList->end = NULL;
     return 1;
 }
@@ -24,6 +26,8 @@ int InsertNewSection(SectionList *secList, Section sec){
     if(secList->start == NULL){
         //data
         aux->section = sec;
+        time_t t = time(NULL);
+        aux->section.lastOpenDate = localtime(&t);
         //
         //Uma lista circular, então no fim, volta ao começo
         secList->start = aux;

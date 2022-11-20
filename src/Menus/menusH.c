@@ -1,3 +1,4 @@
+#include <malloc.h>
 #include "stdio.h"
 #include "unistd.h"
 #include "../../headers/tableH.h"
@@ -95,13 +96,16 @@ void InTable(){
     }
 }
 
-void inSection(){
+void InSection(){
     Table curTable = GetCurrentTable();
     Section section;
+    InsertNewSection(&curTable.sectionList, section);
 
-
-    while (inTable){
+    do{
         printf("\n--------------------%s--------------------\n", curTable.tableTitle);
-        printf("");
-    }
+        //printf("DATA: %s\n", gmtime(data1));
+        printf("Data De Abertura: %s\n", asctime(curTable.sectionList.openSecDate));
+        printf("Ultima Data De Abertura: %s\n", asctime(curTable.sectionList.end->section.lastOpenDate));
+        scanf("%*c");
+    }while (inTable);
 }

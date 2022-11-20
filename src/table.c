@@ -18,6 +18,7 @@ int CreateTable(int id, char masterName[250], char titleTable[200],SheetList she
     strcpy(&table.masterName, masterName);
     strcpy(&table.tableTitle, titleTable);
     table.sheetList = sheetList;
+    CreateSectionList(&table.sectionList);
 
     InsertTableList(&tableList, table);
     idd++;
@@ -45,7 +46,6 @@ int InsertTableList(TableList *tl, Table table){
     if(tl->start == NULL){
         //data
         aux->table = table;
-        aux->table.sectionList.start->section.firstOpenDate = time(0);
         //
         //Uma lista circular, então no fim, volta ao começo
         tl->start = aux;
