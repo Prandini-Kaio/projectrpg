@@ -1,12 +1,14 @@
 #ifndef RPGHELPER_TABLEH_H
 #define RPGHELPER_TABLEH_H
 #include "./sheetH.h"
+#include "./sectionH.h"
 
 typedef struct{
     int id;
     char tableTitle[250];
     char masterName[250];
     SheetList sheetList;
+    SectionList sectionList;
 }Table;
 
 struct TableNo{

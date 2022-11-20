@@ -83,11 +83,25 @@ void EntryTableMenu(){
 
 void InTable(){
     Table curTable = GetCurrentTable();
-    while(inTable == 1){
-        printf("MESA: %s", &curTable.tableTitle);
-        getchar();
-        scanf("%*c");
-        inTable = 0;
+    int op;
+    printf("\n=================================================\n");
+    printf("Bem vindo - %s", curTable.masterName);
+    printf("\nO que deseja fazer?\n"
+           "1 - Iniciar secao\n2 - Voltar");
+    printf("\n=================================================\n");
+    scanf("%d", &op);
+    if(op == 1){
+        InSection();
     }
-    printf("Saindo");
+}
+
+void inSection(){
+    Table curTable = GetCurrentTable();
+    Section section;
+
+
+    while (inTable){
+        printf("\n--------------------%s--------------------\n", curTable.tableTitle);
+        printf("");
+    }
 }

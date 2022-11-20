@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+#include "time.h"
 #include "../headers/tableH.h"
 
 TableList tableList;
@@ -44,6 +45,7 @@ int InsertTableList(TableList *tl, Table table){
     if(tl->start == NULL){
         //data
         aux->table = table;
+        aux->table.sectionList.start->section.firstOpenDate = time(0);
         //
         //Uma lista circular, então no fim, volta ao começo
         tl->start = aux;
@@ -78,7 +80,7 @@ int SetCurrentTable(int id){
     if(exists == 1) {
         currentTable = SearchTable(id);
     }
-    else printf("ID NOT EXISTS");
+    else printf("\nID NOT EXISTS\n");
 }
 
 Table GetCurrentTable(){

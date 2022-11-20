@@ -5,4 +5,5 @@ void TablesMenu();
 void CreateTableMenu();
 void EntryTableMenu();
 void InTable();
+void InSection();
 #endif //RPGHELPER_MENUSH_H
