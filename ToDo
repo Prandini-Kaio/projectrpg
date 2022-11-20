@@ -1,0 +1,23 @@
+O programa funcionara com base em Mesas:
+
+Mesa:
+    - ID                    V
+    - Nome do mestre        V
+    - Jogadores             V
+        - Ficha do jogador
+    - NPCs
+        - Ficha do NPC
+    - Area de anotações
+        - Anotações por data
+        - Seções
+            - Anotações Multiplayer
+                - Anotações que vão para o mestre
+                - Anotações pessoais.
+    - Monstros
+        - Ficha dos monstros
+
+Projeto:
+
+As fichas serão constituidas com Listas de dados.
+
+Mostrar os dados dinâmicamente para todos.

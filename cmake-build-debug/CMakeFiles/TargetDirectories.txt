@@ -1,0 +1,3 @@
+/home/kaio/Documentos/PUC/ll/LAB-AED/RpgHelper/cmake-build-debug/CMakeFiles/RpgHelper.dir
+/home/kaio/Documentos/PUC/ll/LAB-AED/RpgHelper/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/kaio/Documentos/PUC/ll/LAB-AED/RpgHelper/cmake-build-debug/CMakeFiles/rebuild_cache.dir
