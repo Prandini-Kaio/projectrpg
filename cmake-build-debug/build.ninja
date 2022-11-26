@@ -79,6 +79,12 @@ build CMakeFiles/RpgHelper.dir/src/section.c.o: C_COMPILER__RpgHelper_Debug /hom
   OBJECT_DIR = CMakeFiles/RpgHelper.dir
   OBJECT_FILE_DIR = CMakeFiles/RpgHelper.dir/src
 
+build CMakeFiles/RpgHelper.dir/src/sqlTest.c.o: C_COMPILER__RpgHelper_Debug /home/kaio/Documentos/PUC/ll/LAB-AED/RpgHelper/src/sqlTest.c || cmake_object_order_depends_target_RpgHelper
+  DEP_FILE = CMakeFiles/RpgHelper.dir/src/sqlTest.c.o.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles/RpgHelper.dir
+  OBJECT_FILE_DIR = CMakeFiles/RpgHelper.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target RpgHelper
@@ -87,7 +93,7 @@ build CMakeFiles/RpgHelper.dir/src/section.c.o: C_COMPILER__RpgHelper_Debug /hom
 #############################################
 # Link the executable RpgHelper
 
-build RpgHelper: C_EXECUTABLE_LINKER__RpgHelper_Debug CMakeFiles/RpgHelper.dir/main.c.o CMakeFiles/RpgHelper.dir/src/table.c.o CMakeFiles/RpgHelper.dir/src/sheet.c.o CMakeFiles/RpgHelper.dir/src/Menus/menusH.c.o CMakeFiles/RpgHelper.dir/src/section.c.o
+build RpgHelper: C_EXECUTABLE_LINKER__RpgHelper_Debug CMakeFiles/RpgHelper.dir/main.c.o CMakeFiles/RpgHelper.dir/src/table.c.o CMakeFiles/RpgHelper.dir/src/sheet.c.o CMakeFiles/RpgHelper.dir/src/Menus/menusH.c.o CMakeFiles/RpgHelper.dir/src/section.c.o CMakeFiles/RpgHelper.dir/src/sqlTest.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/RpgHelper.dir
   POST_BUILD = :

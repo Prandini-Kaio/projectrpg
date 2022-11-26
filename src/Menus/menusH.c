@@ -5,8 +5,10 @@
 #include "../../headers/menusH.h"
 
 int inTable;
+TableList tableList;
 
-void InitialMenu(){
+void InitialMenu(TableList tbList){
+    tableList = tbList;
     int op;
     printf("\n-----------------------------------------\n");
     printf("Bem vindo, o que deseja fazer?\n"
@@ -35,7 +37,7 @@ void TablesMenu(){
             break;
         case 2:
             printf("Entrar em uma mesa");
-            EntryTableMenu();
+            EntryTableMenu(&tableList);
             break;
     }
 }
@@ -56,37 +58,19 @@ void CreateTableMenu(){
     CreateTable(0, mestre, title,sl);
 }
 
-void EntryTableMenu(){
+void EntryTableMenu(TableList *tableList){
     int id;
-    TableList tableL = GetTableList();
-    struct TableNo *aux;
-    if(tableL.start == NULL) printf("SEM MESAS\n\n");
-    aux = tableL.start;
 
-    printf("\n===============================================\n");
-    do{
-        printf("\n-----------------------------------------------\n");
-        printf("ID: %d\n"
-               "    MESA: %s\n"
-               "    MESTRE: %s", aux->table.id, &aux->table.tableTitle, &aux->table.masterName);
-        aux = aux->next;
-    } while (aux != tableL.start);
-    printf("\n===============================================\n");
+    ShowTableList(tableList);
     printf("Qual o id da mesa que deseja entrar?\n");
     scanf("%d", &id);
-    SetCurrentTable(id);
     inTable = 1;
     InTable();
-//    printf("Aperte qualquer tecla para continuar\n");
-//    getchar();
-//    scanf("%*c");
 }
 
 void InTable(){
-    Table curTable = GetCurrentTable();
     int op;
     printf("\n=================================================\n");
-    printf("Bem vindo - %s", curTable.masterName);
     printf("\nO que deseja fazer?\n"
            "1 - Iniciar secao\n2 - Voltar");
     printf("\n=================================================\n");
@@ -96,15 +80,12 @@ void InTable(){
     }
 }
 
-void InSection(){
-    Table curTable = GetCurrentTable();
-    Section section;
-    InsertNewSection(&curTable.sectionList, section);
-
+void InSection(Table curTable){
     do{
         printf("\n--------------------%s--------------------\n", curTable.tableTitle);
         //printf("DATA: %s\n", gmtime(data1));
         printf("Data De Abertura: %s\n", asctime(curTable.sectionList.openSecDate));
+        fflush(stdout);
         printf("Ultima Data De Abertura: %s\n", asctime(curTable.sectionList.end->section.lastOpenDate));
         scanf("%*c");
     }while (inTable);

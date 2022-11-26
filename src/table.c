@@ -1,26 +1,19 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
-#include "time.h"
 #include "../headers/tableH.h"
 
-TableList tableList;
-Table currentTable;
-
 int idd = 0;
-int currentTableID;
 
-//Cria uma nova mesa e retorna ela
+//Cria uma nova mesa
 int CreateTable(int id, char masterName[250], char titleTable[200],SheetList sheetList){
     Table table;
 
     table.id = id + idd;
-    strcpy(&table.masterName, masterName);
-    strcpy(&table.tableTitle, titleTable);
+    strcpy(table.masterName, masterName);
+    strcpy(table.tableTitle, titleTable);
     table.sheetList = sheetList;
     CreateSectionList(&table.sectionList);
-
-    InsertTableList(&tableList, table);
     idd++;
     return 0;
 }
@@ -33,16 +26,14 @@ void ShowTable(Table table){
     printf("    \n"
            "        Mestre: %s\n"
            "        ID: %d\n",
-           &aux->masterName, aux->id);
+           aux->masterName, aux->id);
     printf("\n    -----------------------------------\n");
-    aux = aux;
 }
 
 //Insere uma ficha na lista de fichas da mesa
 int InsertTableList(TableList *tl, Table table){
     struct TableNo *aux;
     aux = (struct TableNo*)malloc(sizeof (struct TableNo));
-    if(aux == NULL) return 0;//CASO O AUXILIAR SEJA NULO, NAO EXISTE LISTA
     if(tl->start == NULL){
         //data
         aux->table = table;
@@ -65,26 +56,13 @@ int InsertTableList(TableList *tl, Table table){
     return 1;
 }
 
-Table SearchTable(int id){
+Table SearchTable(int id, TableList *tableL){
     struct TableNo *aux;
-    TableList tableL = GetTableList();
-    aux = tableL.start;
+    aux = tableL->start;
     do{
         if(aux->table.id == id) return aux->table;
         aux = aux->next;
-    } while (aux != tableL.start);
-}
-
-int SetCurrentTable(int id){
-    int exists = TableExists(id);
-    if(exists == 1) {
-        currentTable = SearchTable(id);
-    }
-    else printf("\nID NOT EXISTS\n");
-}
-
-Table GetCurrentTable(){
-    return currentTable;
+    } while (aux != tableL->start);
 }
 
 //Table List
@@ -95,27 +73,21 @@ int CreateTableList(TableList *tl){
 
 //Mostra as fichas da mesa
 
-void ShowTableList(){
+void ShowTableList(TableList *tableList){
     struct TableNo *aux;
-    aux = tableList.start;
+    aux = tableList->start;
     do{
         ShowTable(aux->table);
         aux = aux->next;
-    } while (aux != tableList.start);
+    } while (aux != tableList->start);
 }
 
-int TableExists(int id){
+int TableExists(int id, TableList *tableList){
     struct TableNo *aux;
-    TableList tableList = GetTableList();
-    aux = tableList.start;
+    aux = tableList->start;
     do {
         if(aux->table.id == id) return 1;
         aux = aux->next;
-    } while (aux != tableList.start);
+    } while (aux != tableList->start);
     return 0;
-}
-
-TableList GetTableList(){
-    if(tableList.start == NULL) printf("EMPTY TABLE");
-    return tableList;
 }

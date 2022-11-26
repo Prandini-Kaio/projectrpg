@@ -23,16 +23,12 @@ typedef struct {
 } TableList;
 
 int CreateTable(int id, char masterName[], char titleTable[],SheetList playersSheet);
-Table SearchTable(int id);
-int SetCurrentTable(int id);
-Table GetCurrentTable();
+Table SearchTable(int id, TableList *tableL);
 void ShowTable(Table table);
 
 int CreateTableList(TableList *tableL);
 int InsertTableList(TableList *tableL, Table table);
-int TableExists(int id);
-void ShowTableList();
-
-TableList GetTableList();
+int TableExists(int id, TableList *tableList);
+void ShowTableList(TableList *tableList);
 
 #endif //RPGHELPER_TABLEH_H

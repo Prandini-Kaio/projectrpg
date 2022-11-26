@@ -1,50 +1,48 @@
+#include <malloc.h>
 #include "../headers/sectionH.h"
 #include "stdio.h"
 
-
-
-int NewSection(SectionList *sectionList){
-    Section section;
-    section.numberOfSection += sectionList->end->section.numberOfSection;
-    section.lastOpenDate = time(0);
-
-    InsertNewSection(sectionList, section);
-    return 0;
-}
-
 int CreateSectionList(SectionList *sectionList){
     sectionList->start = NULL;
-    time_t t = time(NULL);
+    time_t t= time(NULL);
     sectionList->openSecDate = localtime(&t);
     sectionList->end = NULL;
+}
+
+int InsertSectionInList(SectionList *sectionList){
+    struct SectionNo *aux;
+    aux = (struct SectionNo *)malloc(sizeof(struct SectionNo));
+    if(sectionList->start == NULL){
+        //Dados
+        aux->section = CreateSection(sectionList);
+        //
+        sectionList->start = aux;
+        sectionList->end = aux;
+        aux->next = sectionList->start;
+        aux->previous = sectionList->end;
+        return 1;
+    }
+
+    //Dados
+    aux->section = CreateSection(sectionList);
+    //
+    aux->previous = sectionList->end;
+    sectionList->end->next = aux;
+    aux->next = sectionList->start;
+    sectionList->start->previous = aux;
+    sectionList->end = aux;
     return 1;
 }
 
-int InsertNewSection(SectionList *secList, Section sec){
-    struct SectionNo *aux;
-    aux = NULL;
-    if(secList->start == NULL){
-        //data
-        aux->section = sec;
-        time_t t = time(NULL);
-        aux->section.lastOpenDate = localtime(&t);
-        //
-        //Uma lista circular, então no fim, volta ao começo
-        secList->start = aux;
-        secList->end = aux;
-        aux->next = secList->start;
-        aux->previous = secList->end;
-        return 1;
-    }
-    //data
-    aux->section = sec;
-    // Aumentar o numero da seção
-    aux->section.numberOfSection += aux->previous->section.numberOfSection;
-    //
-    aux->previous = secList->end;
-    secList->end->next = aux;
-    aux->next = secList->start;
-    secList->start->previous = aux;
-    secList->end = aux;
-    return 1;
+Section CreateSection(SectionList *sectionList){
+    Section section;
+
+    time_t t = time(NULL);
+    section.lastOpenDate = localtime(&t);
+    //Se o start for nulo
+    if(sectionList->start == NULL) section.numberOfSection = 0;
+    else section.numberOfSection += sectionList->end->section.numberOfSection;
+
+    return section;
 }
+

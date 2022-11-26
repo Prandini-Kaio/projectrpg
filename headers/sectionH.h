@@ -19,10 +19,9 @@ typedef struct {
     struct SectionNo *end;
 }SectionList;
 
-int NewSection(SectionList *secList);
-
 int CreateSectionList(SectionList *sectionList);
-int InsertNewSection(SectionList *secList, Section sec);
-int InitNewSection();
+int InsertSectionInList(SectionList *sectionList);
+
+Section CreateSection(SectionList *sectionList);
 
 #endif //RPGHELPER_SECTIONH_H
